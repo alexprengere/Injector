@@ -1,7 +1,16 @@
-
 ========
 Injector
 ========
+
+This tool converts positional data to delimited data.
+
+
+Installation
+------------
+
+You may install the tool using::
+
+ % python setup install --user
 
 Example
 -------
