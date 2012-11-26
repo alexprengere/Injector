@@ -26,29 +26,34 @@ def handle_args():
     )
 
     parser.add_argument('-r', '--reverse',
-                        help = '''Reverse injection.''',
+                        help = '''Reverse injection, will remove delimiter and
+                        use positional fields instead. Using this tool first in normal
+                        mode, then in reverse modei, with the exact same options, should be
+                        an identity for the file.''',
                         action = 'store_true')
 
     parser.add_argument('-n', '--no-spaces',
-                        help = '''Strip all spaces.''',
+                        help = '''Strip all field spaces when injecting delimiters.''',
                         action = 'store_true')
 
     parser.add_argument('-s', '--shift',
-                        help = '''Specify start point for counting positions.''',
+                        help = '''Specify start point for counting indices.
+                        Default is %s.''' % DEF_SHIFT,
                         type = int,
                         default = DEF_SHIFT)
 
     parser.add_argument('-d', '--delimiter',
-                        help = '''Specify delimiter.''',
+                        help = '''Specify delimiter. Default is %s.''' % DEF_DELIMITER,
                         default = DEF_DELIMITER)
 
     parser.add_argument('-i', '--indices',
-                        help = '''Indices for injection.''',
+                        help = '''Indices for injection. Accepts n arguments separated by
+                        spaces, like -i 2 3 7.''',
                         type = int,
                         nargs = '+',
                         default = [])
 
-    parser.epilog = 'Example: head example.pos | %s -i 7 15 23' % parser.prog
+    parser.epilog = 'Example: head example.pos | %s - -i 7 15 23' % parser.prog
 
     return vars(parser.parse_args())
 
